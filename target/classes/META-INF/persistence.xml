@@ -6,7 +6,7 @@
 		<class>entidades.Jugador</class>
 	<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://192.168.56.101:3306/rentacar?serverTimezone=Europe/Madrid" />
+				value="jdbc:mysql://192.168.56.101:3306/equipo?serverTimezone=Europe/Madrid" />
 			<property name="javax.persistence.jdbc.user" 
 				value="m15" />
 			<property name="javax.persistence.jdbc.driver"
