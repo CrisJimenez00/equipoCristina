@@ -110,12 +110,25 @@ public class Equipo implements Serializable {
 		builder.append(", nombre=");
 		builder.append(nombre);
 		builder.append(", jugadors=");
-		builder.append(jugadors);
+		builder.append(contratos());
 		builder.append(", entrenador=");
 		builder.append(entrenador);
 		builder.append("]");
 		return builder.toString();
 	}
+	
+	//para que la lista aparezca por consola
+		private String contratos() {
+			String texto = "";
+			if (!jugadors.isEmpty()) {
+				for (Jugador p : jugadors) {
+					texto += String.valueOf(p.getCodficha()) + ", ";
+
+				}
+				return texto;
+			}
+			return "";
+		}
 	
 
 }

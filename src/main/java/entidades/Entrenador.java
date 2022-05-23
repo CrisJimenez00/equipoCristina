@@ -95,8 +95,6 @@ public class Entrenador implements Serializable {
 		builder.append(dni);
 		builder.append(", nombre=");
 		builder.append(nombre);
-		builder.append(", equipo=");
-		builder.append(equipo);
 		builder.append("]");
 		return builder.toString();
 	}
