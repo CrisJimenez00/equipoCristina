@@ -10,7 +10,6 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="equipo")
 @NamedQuery(name="Equipo.findAll", query="SELECT e FROM Equipo e")
 public class Equipo implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -25,13 +24,14 @@ public class Equipo implements Serializable {
 
 	private String nombre;
 
+	//uni-directional one-to-one association to Entrenador
+	@OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinColumn(name="codentrenador")
+	private Entrenador entrenador;
+
 	//bi-directional many-to-one association to Jugador
 	@OneToMany(mappedBy="equipo")
 	private List<Jugador> jugadors;
-
-	//bi-directional one-to-one association to Entrenador
-	@OneToOne(mappedBy="equipo")
-	private Entrenador entrenador;
 
 	public Equipo() {
 	}
@@ -68,6 +68,14 @@ public class Equipo implements Serializable {
 		this.nombre = nombre;
 	}
 
+	public Entrenador getEntrenador() {
+		return this.entrenador;
+	}
+
+	public void setEntrenador(Entrenador entrenador) {
+		this.entrenador = entrenador;
+	}
+
 	public List<Jugador> getJugadors() {
 		return this.jugadors;
 	}
@@ -90,45 +98,11 @@ public class Equipo implements Serializable {
 		return jugador;
 	}
 
-	public Entrenador getEntrenador() {
-		return this.entrenador;
-	}
-
-	public void setEntrenador(Entrenador entrenador) {
-		this.entrenador = entrenador;
-	}
-
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Equipo [codequipo=");
-		builder.append(codequipo);
-		builder.append(", direcsede=");
-		builder.append(direcsede);
-		builder.append(", fondos=");
-		builder.append(fondos);
-		builder.append(", nombre=");
-		builder.append(nombre);
-		builder.append(", jugadors=");
-		builder.append(contratos());
-		builder.append(", entrenador=");
-		builder.append(entrenador);
-		builder.append("]");
-		return builder.toString();
+		return "Equipo [codequipo=" + codequipo + ", direcsede=" + direcsede + ", fondos=" + fondos + ", nombre="
+				+ nombre + ", entrenador=" + entrenador.toString()  + "]";
 	}
-	
-	//para que la lista aparezca por consola
-		private String contratos() {
-			String texto = "";
-			if (!jugadors.isEmpty()) {
-				for (Jugador p : jugadors) {
-					texto += String.valueOf(p.getCodficha()) + ", ";
-
-				}
-				return texto;
-			}
-			return "";
-		}
-	
+	//+ ", jugadors=" + jugadors
 
 }

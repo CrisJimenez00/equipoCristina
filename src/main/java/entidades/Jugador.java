@@ -9,7 +9,6 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="jugador")
 @NamedQuery(name="Jugador.findAll", query="SELECT j FROM Jugador j")
 public class Jugador implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -27,7 +26,7 @@ public class Jugador implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-one association to Equipo
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name="codequipo")
 	private Equipo equipo;
 
@@ -84,22 +83,8 @@ public class Jugador implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Jugador [codficha=");
-		builder.append(codficha);
-		builder.append(", ape1=");
-		builder.append(ape1);
-		builder.append(", ape2=");
-		builder.append(ape2);
-		builder.append(", dni=");
-		builder.append(dni);
-		builder.append(", nombre=");
-		builder.append(nombre);
-		builder.append(", equipo=");
-		builder.append(equipo);
-		builder.append("]");
-		return builder.toString();
+		return "Jugador [codficha=" + codficha + ", ape1=" + ape1 + ", ape2=" + ape2 + ", dni=" + dni + ", nombre="
+				+ nombre + ", equipo=" + equipo + "]";
 	}
-	
 
 }

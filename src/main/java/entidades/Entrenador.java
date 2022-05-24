@@ -9,7 +9,6 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="entrenador")
 @NamedQuery(name="Entrenador.findAll", query="SELECT e FROM Entrenador e")
 public class Entrenador implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -25,11 +24,6 @@ public class Entrenador implements Serializable {
 	private String dni;
 
 	private String nombre;
-
-	//bi-directional one-to-one association to Equipo
-	@OneToOne
-	@JoinColumn(name="codentrenador", referencedColumnName="codentrenador")
-	private Equipo equipo;
 
 	public Entrenador() {
 	}
@@ -74,30 +68,10 @@ public class Entrenador implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Equipo getEquipo() {
-		return this.equipo;
-	}
-
-	public void setEquipo(Equipo equipo) {
-		this.equipo = equipo;
-	}
-
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Entrenador [codentrenador=");
-		builder.append(codentrenador);
-		builder.append(", ape1=");
-		builder.append(ape1);
-		builder.append(", ape2=");
-		builder.append(ape2);
-		builder.append(", dni=");
-		builder.append(dni);
-		builder.append(", nombre=");
-		builder.append(nombre);
-		builder.append("]");
-		return builder.toString();
+		return "Entrenador [codentrenador=" + codentrenador + ", ape1=" + ape1 + ", ape2=" + ape2 + ", dni=" + dni
+				+ ", nombre=" + nombre + "]";
 	}
-	
 
 }
