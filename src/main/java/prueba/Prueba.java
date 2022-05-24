@@ -91,10 +91,7 @@ public class Prueba {
 
 				// Caso de elegir mostrarDatos
 				case 1:
-					System.out.println("Todos los Entrenadores------------ ");
-					for (Entrenador v : listaEntrenador) {
-						System.out.println(v);
-					}
+					mostrarEntrenador(contEntre);
 					fin = true;
 					break;
 
@@ -327,81 +324,31 @@ public class Prueba {
 			// Caso de elegir mostrarDatos
 			case 1:
 
-				System.out.println("Todos los Equipos ------------ ");
-				for (Equipo v : listaEquipo) {
-					System.out.println(v);
-				}
-
+				mostrarEquipo(contEqui);
 				break;
 
 			// Caso de elegir crear
 			case 2:
 
-				Equipo eq1 = new Equipo();
-				try {
-
-					System.out.println("Introduzca un código para el nuevo equipo");
-					int codequipo = teclado.nextInt();
-					eq1.setCodequipo(codequipo);
-
-				} catch (NumberFormatException nme) {
-					System.out.println("Introduzca un número correcto para el código");
-				}
-
-				System.out.println("Introduzca un nombre para el equipo");
-				String nombre = teclado.next();
-				eq1.setNombre(nombre);
-
-				System.out.println("Introduzca una direccion");
-				String direcsede = teclado.next();
-				eq1.setDirecsede(direcsede);
-
-				try {
-
-					System.out.println("Introduzca los fondos monetarios que tendrá el equipo");
-					double fondos = teclado.nextDouble();
-					eq1.setFondos(fondos);
-
-				} catch (NumberFormatException nme) {
-					System.out.println("Introduzca un número correcto para los fondos");
-				}
-
-				contEqui.crearEquipo(eq1);
+				crearEquipo();
 				break;
 
 			// Caso de elegir eliminar
 			case 3:
-				try {
 
-					mostrarEntrenador(contEntre);
-					System.out.println("Introduzca el codigo del equipo que desee que se elimine");
-					int codEquipo = teclado.nextInt();
-					contEqui.borrarEquipo(contEqui.findByPK(codEquipo));
-
-				} catch (NumberFormatException nme) {
-					System.out.println("Introduzca un número correcto para el código");
-				}
-
+				eliminarEquipo();
 				break;
 
 			// Caso de elegir editar
 			case 4:
+
 				modificarEquipo();
 				break;
 
 			// Caso de elegir buscar por pk
 			case 5:
-				try {
 
-					System.out.println("Introduzca el código de equipo que desee buscar");
-					int codEquipo = teclado.nextInt();
-					Equipo e = contEqui.findByPK(codEquipo);
-
-					System.out.println("El equipo era: " + e.getNombre());
-				} catch (NumberFormatException nme) {
-					System.out.println("Introduzca un número correcto para el código");
-				}
-
+				buscarEquipo();
 				break;
 			default:
 
@@ -413,6 +360,72 @@ public class Prueba {
 
 			System.out.println("Introduzca un número, no una letra, gracias");
 
+		}
+
+	}
+
+	//Métodos necesarios para trabajar con los datos de equipo(mirar si la codificación interna es correcta)
+	private static void crearEquipo() {
+
+		Equipo eq1 = new Equipo();
+		try {
+
+			System.out.println("Introduzca un código para el nuevo equipo");
+			int codequipo = teclado.nextInt();
+			eq1.setCodequipo(codequipo);
+
+		} catch (NumberFormatException nme) {
+			System.out.println("Introduzca un número correcto para el código");
+		}
+
+		System.out.println("Introduzca un nombre para el equipo");
+		String nombre = teclado.next();
+		eq1.setNombre(nombre);
+
+		System.out.println("Introduzca una direccion");
+		String direcsede = teclado.next();
+		eq1.setDirecsede(direcsede);
+
+		try {
+
+			System.out.println("Introduzca los fondos monetarios que tendrá el equipo");
+			double fondos = teclado.nextDouble();
+			eq1.setFondos(fondos);
+
+		} catch (NumberFormatException nme) {
+			System.out.println("Introduzca un número correcto para los fondos");
+		}
+
+		contEqui.crearEquipo(eq1);
+
+	}
+
+	private static void eliminarEquipo() {
+
+		try {
+
+			mostrarEntrenador(contEntre);
+			System.out.println("Introduzca el codigo del equipo que desee que se elimine");
+			int codEquipo = teclado.nextInt();
+			contEqui.borrarEquipo(contEqui.findByPK(codEquipo));
+
+		} catch (NumberFormatException nme) {
+			System.out.println("Introduzca un número correcto para el código");
+		}
+
+	}
+
+	private static void buscarEquipo() {
+
+		try {
+
+			System.out.println("Introduzca el código de equipo que desee buscar");
+			int codEquipo = teclado.nextInt();
+			Equipo e = contEqui.findByPK(codEquipo);
+
+			System.out.println("El equipo era: " + e.getNombre());
+		} catch (NumberFormatException nme) {
+			System.out.println("Introduzca un número correcto para el código");
 		}
 
 	}
@@ -550,7 +563,6 @@ public class Prueba {
 				String ape2 = teclado.next();
 				e1.setApe2(ape2);
 
-
 				contEntre.crearPersonas(e1);
 				break;
 
@@ -676,7 +688,6 @@ public class Prueba {
 				e2.setNombre(ape2Modificado);
 
 				break;
-
 
 			// Cambia Todo
 			case 7:
