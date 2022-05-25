@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `entrenador`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entrenador` (
-  `codentrenador` int NOT NULL,
+  `codentrenador` int NOT NULL AUTO_INCREMENT,
   `dni` char(12) DEFAULT NULL,
   `nombre` varchar(50) DEFAULT NULL,
   `ape1` varchar(50) DEFAULT NULL,
   `ape2` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`codentrenador`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `entrenador` (
 
 LOCK TABLES `entrenador` WRITE;
 /*!40000 ALTER TABLE `entrenador` DISABLE KEYS */;
-INSERT INTO `entrenador` VALUES (1,'79297715V','Mohamed','Mota','Cifuentes'),(2,'67232956T','Maria','Barea','Guevara'),(3,'23977487X','Kevin','Mateos','Sanz'),(4,'11527656X','Ariana','Prada','Vallejo');
+INSERT INTO `entrenador` VALUES (1,'79297715V','Mohamed','Mota','Cifuentes'),(2,'67232956T','Maria','Barea','Guevara'),(3,'23977487X','Kevin','Mateos','Sanz'),(4,'11527656X','Carmen','Prada','Vallejo');
 /*!40000 ALTER TABLE `entrenador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,15 +50,15 @@ DROP TABLE IF EXISTS `equipo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `equipo` (
-  `codequipo` int NOT NULL,
+  `codequipo` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
   `direcsede` varchar(100) DEFAULT NULL,
   `fondos` decimal(10,0) DEFAULT NULL,
   `codentrenador` int DEFAULT NULL,
   PRIMARY KEY (`codequipo`),
   KEY `fk_codentrenador` (`codentrenador`),
-  CONSTRAINT `fk_codentrenador` FOREIGN KEY (`codentrenador`) REFERENCES `entrenador` (`codentrenador`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_codentrenador` FOREIGN KEY (`codentrenador`) REFERENCES `entrenador` (`codentrenador`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=1235 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,16 +79,16 @@ DROP TABLE IF EXISTS `jugador`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `jugador` (
-  `codficha` int NOT NULL,
+  `codjugador` int NOT NULL AUTO_INCREMENT,
   `dni` char(12) DEFAULT NULL,
   `nombre` varchar(50) DEFAULT NULL,
   `ape1` varchar(50) DEFAULT NULL,
   `ape2` varchar(50) DEFAULT NULL,
   `codequipo` int DEFAULT NULL,
-  PRIMARY KEY (`codficha`),
+  PRIMARY KEY (`codjugador`),
   KEY `fk_codequipo` (`codequipo`),
-  CONSTRAINT `fk_codequipo` FOREIGN KEY (`codequipo`) REFERENCES `equipo` (`codequipo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_codequipo` FOREIGN KEY (`codequipo`) REFERENCES `equipo` (`codequipo`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=1116 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-25 13:02:13
+-- Dump completed on 2022-05-25 22:24:40
