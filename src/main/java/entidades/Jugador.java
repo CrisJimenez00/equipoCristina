@@ -3,19 +3,19 @@ package entidades;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 /**
  * The persistent class for the jugador database table.
  * 
  */
 @Entity
-@NamedQuery(name="Jugador.findAll", query="SELECT j FROM Jugador j")
+@NamedQuery(name = "Jugador.findAll", query = "SELECT j FROM Jugador j")
 public class Jugador implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int codficha;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int codjugador;
 
 	private String ape1;
 
@@ -25,20 +25,20 @@ public class Jugador implements Serializable {
 
 	private String nombre;
 
-	//bi-directional many-to-one association to Equipo
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@JoinColumn(name="codequipo")
+	// bi-directional many-to-one association to Equipo
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "codequipo")
 	private Equipo equipo;
 
 	public Jugador() {
 	}
 
-	public int getCodficha() {
-		return this.codficha;
+	public int getCodjugador() {
+		return this.codjugador;
 	}
 
-	public void setCodficha(int codficha) {
-		this.codficha = codficha;
+	public void setCodjugador(int codjugador) {
+		this.codjugador = codjugador;
 	}
 
 	public String getApe1() {
@@ -83,7 +83,7 @@ public class Jugador implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Jugador [codficha=" + codficha + ", ape1=" + ape1 + ", ape2=" + ape2 + ", dni=" + dni + ", nombre="
+		return "Jugador [codjugador=" + codjugador + ", ape1=" + ape1 + ", ape2=" + ape2 + ", dni=" + dni + ", nombre="
 				+ nombre + ", equipo=" + equipo + "]";
 	}
 

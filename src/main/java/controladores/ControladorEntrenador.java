@@ -66,7 +66,6 @@ public class ControladorEntrenador {
 
 	}
 
-
 	// Aparecen todos las personas que aparecen en la tabla personas
 	public List<Entrenador> findAll() {
 		this.em = entityManagerFactory.createEntityManager();

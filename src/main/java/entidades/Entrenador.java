@@ -3,18 +3,18 @@ package entidades;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 /**
  * The persistent class for the entrenador database table.
  * 
  */
 @Entity
-@NamedQuery(name="Entrenador.findAll", query="SELECT e FROM Entrenador e")
+@NamedQuery(name = "Entrenador.findAll", query = "SELECT e FROM Entrenador e")
 public class Entrenador implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codentrenador;
 
 	private String ape1;

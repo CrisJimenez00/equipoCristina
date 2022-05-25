@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import entidades.Equipo;
 
 public class ControladorEquipo {
+	
 	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("equipoCristina");
 	private EntityManager em;
 	private Query consulta;
@@ -64,7 +65,6 @@ public class ControladorEquipo {
 		return aux;
 
 	}
-
 
 	// Aparecen todos las personas que aparecen en la tabla personas
 	public List<Equipo> findAll() {

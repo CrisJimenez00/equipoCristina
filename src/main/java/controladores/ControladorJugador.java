@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import entidades.Jugador;
 
 public class ControladorJugador {
+
 	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("equipoCristina");
 	private EntityManager em;
 	private Query consulta;
@@ -64,22 +65,6 @@ public class ControladorJugador {
 		return aux;
 
 	}
-
-	// Busca por DNI
-//	public Personas findByDni(String dni) {
-//		this.em = entityManagerFactory.createEntityManager();
-//		Personas aux = null;
-//		this.consulta = em.createNativeQuery("Select * from personas where dni = ?", Personas.class);
-//		this.consulta.setParameter(1, dni);
-//		try {
-//			aux = (Personas) consulta.getSingleResult();
-//		} catch (NoResultException nre) {
-//			aux = null;
-//		}
-//		this.em.close();
-//		return aux;
-//
-//	}
 
 	// Aparecen todos las personas que aparecen en la tabla jugador
 	public List<Jugador> findAll() {

@@ -4,18 +4,18 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the equipo database table.
  * 
  */
 @Entity
-@NamedQuery(name="Equipo.findAll", query="SELECT e FROM Equipo e")
+@NamedQuery(name = "Equipo.findAll", query = "SELECT e FROM Equipo e")
 public class Equipo implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codequipo;
 
 	private String direcsede;
@@ -24,13 +24,13 @@ public class Equipo implements Serializable {
 
 	private String nombre;
 
-	//uni-directional one-to-one association to Entrenador
-	@OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@JoinColumn(name="codentrenador")
+	// uni-directional one-to-one association to Entrenador
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "codentrenador")
 	private Entrenador entrenador;
 
-	//bi-directional many-to-one association to Jugador
-	@OneToMany(mappedBy="equipo")
+	// bi-directional many-to-one association to Jugador
+	@OneToMany(mappedBy = "equipo")
 	private List<Jugador> jugadors;
 
 	public Equipo() {
@@ -101,8 +101,15 @@ public class Equipo implements Serializable {
 	@Override
 	public String toString() {
 		return "Equipo [codequipo=" + codequipo + ", direcsede=" + direcsede + ", fondos=" + fondos + ", nombre="
-				+ nombre + ", entrenador=" + entrenador.toString()  + "]";
+				+ nombre + ", entrenador=" + entrenador + ", jugadores=" + toStringJugadores() + "]";
 	}
-	//+ ", jugadors=" + jugadors
+
+	private String toStringJugadores() {
+		StringBuilder tmp = new StringBuilder();
+		for (Jugador jugador : jugadors) {
+			tmp.append("Nombre: ").append(jugador.getNombre());
+		}
+		return tmp.toString();
+	}
 
 }
