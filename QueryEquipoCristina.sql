@@ -1,5 +1,5 @@
 -- Cristina Jiménez
-drop database equipo;
+drop database if exists equipo;
 create database if not exists equipo;
 use equipo;
 

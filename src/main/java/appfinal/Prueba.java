@@ -328,7 +328,11 @@ public class Prueba {
 
 	}
 
+	// -------------------------------
 	// ------------EQUIPO------------
+	// -------------------------------
+
+	// Método el cual hace las funciones dentro de la tabla equipo
 	public static void menuInternoEquipo() {
 
 		teclado = new Scanner(System.in);
@@ -581,7 +585,11 @@ public class Prueba {
 
 	}
 
-//------------JUGADOR---------
+	// ----------------------------
+	// ------------JUGADOR---------
+	// ----------------------------
+
+	// Método el cual hace las funciones dentro de la tabla jugador
 	public static void menuInternoJugador() {
 
 		teclado = new Scanner(System.in);
@@ -853,6 +861,9 @@ public class Prueba {
 		}
 	}
 
+	// ---------------------
+	// --------MAIN---------
+	// ---------------------
 	public static void main(String[] args) {
 		menu();
 	}
